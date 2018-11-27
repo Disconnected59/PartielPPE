@@ -8,5 +8,17 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<div>
+Les indications : 
+<ul>
+{%for indication in indications %}
+<li> Id Medicament : {{indication.getMedicament()}} <br/> Id Traitement : {{indication.getTraitement()}} <br/> Posologie : {{indication.getPosologie()}}
+</li>
+{%else%}
+Pas d'indication trouvé
+{%endfor%}
+
+</div>
+
 
 {% endblock %}
