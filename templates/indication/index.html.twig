@@ -12,7 +12,7 @@
 Les indications : 
 <ul>
 {%for indication in indications %}
-<li> Id Medicament : {{indication.getMedicament()}} <br/> Id Traitement : {{indication.getTraitement()}} <br/> Posologie : {{indication.getPosologie()}}
+<li> Medicament : {{indication.getMedicament().getLibelle()}} <br/> Traitement pour le patient : {{indication.getTraitement().getNomPatient()}} <br/> Posologie : {{indication.getPosologie()}}
 </li>
 {%else%}
 Pas d'indication trouvé
