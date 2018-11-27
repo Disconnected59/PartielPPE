@@ -11,9 +11,16 @@
 <div class="example-wrapper">
     <h1>Hello! ✅</h1>
 
-    nb de traitement : {{ traitement|length }}
-	<ul>
-		<li>{{traitement.nomPatient}}</li>
-	</ul>
+    nb de traitement : {{ traitements|length }}
+    {% for traitement in traitements %}
+		<ul>
+			<li>{{traitement.nomPatient}},
+				arriver le {{traitement.dateDebut|date('d-m-Y')}}
+				et est resté pendant {{traitement.duree}} jour(s)
+			</li>
+		</ul>
+	{% else %}
+		Pas d'adherent trouvé
+	{% endfor %}
 </div>
 {% endblock %}

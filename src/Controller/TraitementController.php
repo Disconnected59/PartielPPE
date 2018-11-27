@@ -29,7 +29,7 @@ class TraitementController extends AbstractController
     	$repository = $this -> getDoctrine() -> getRepository(Traitement::class);
     	$lesTraitement = $repository -> findAll();
         return $this->render('traitement/index.html.twig', [
-            'traitement' => $lesTraitement,
+            'traitements' => $lesTraitement,
         ]);
     }
 }
