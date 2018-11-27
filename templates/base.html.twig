@@ -1,12 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+     <meta charset="UTF-8">
+        <title>{% block title %}Bienvenue chez Basic Fat!{% endblock %}</title>
+        {% block stylesheets %} <link rel="stylesheet" href="style.css">
+		 <link rel="stylesheet" href="font-awesome.min.css">{% endblock %}
+		 
+		 <style>
+		 #header {
+			background: #1c1c1c;
+			color: #d5d5d5;
+			cursor: default;
+			height: 5em;
+			left: 0;
+			line-height: 5em;
+			/*	position: fixed; */
+			text-align: center;
+			top: 0;
+			width: 100%;
+			z-index: 10001;
+			/* max-width: 65em; */
+			/*width: calc(100% - 6em); */
+			margin: 0 auto;
+			/* position: relative; */
+	}
+
+			@media screen and (max-width: 480px) {
+
+				#header .inner {
+					max-width: 90%;
+					width: 90%;
+				}
+
+			}
+			
+			#header a {
+			-moz-transition: color 0.2s ease-in-out;
+			-webkit-transition: color 0.2s ease-in-out;
+			-ms-transition: color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out;
+			/* display: inline-block; */
+			padding: 0 2em;
+			color: #ffffff;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-weight: 700;
+			font-size: .85em;
+		}
+
+			#header a:hover {
+				color: rgba(255, 255, 255, 0.75);
+			}
+
+			#header a:last-child {
+				/*padding-right: 0em; */
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#header a {
+					padding: 0 0.5em;
+				}
+
+			}
+			
+		</style>
+       
+
+
     </head>
-    <body>
-        {% block body %}{% endblock %}
+		<body>
+				<nav id="header">
+					<a href="http://localhost:8000/indication">Indications</a>
+					<a href="http://localhost:8000/medicament">Medicaments</a>
+					<a href="http://localhost:8000/traitement">Traitements</a>
+				</nav>	
+				
+				  {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-    </body>
+		</body>
 </html>
