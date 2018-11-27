@@ -14,9 +14,9 @@ class MedicamentController extends AbstractController
     public function index()
     {
         $repository=$this->getDoctrine()->getRepository(Medicament::class);
-		$lesMedoc=$repository->findAll();
+		$lesMedocs=$repository->findAll();
 		return $this->render('medicament/index.html.twig',[
-			'medecins'=>$lesMedecins,
+			'medicament'=>$lesMedocs,
 		]);
     }
 }
