@@ -47,7 +47,7 @@ class MedicamentController extends AbstractController
 	/**
      * @Route("/medicament/modifier/{id}", name="modifierMedoc")
      */
-    public function modifier($id, Request $request)
+    public function modifierMedicament($id, Request $request)
     {
     	$repository = $this -> getDoctrine() -> getRepository(Medicament::class);
     	$medicament = $repository -> find($id);
@@ -67,7 +67,7 @@ class MedicamentController extends AbstractController
     /**
      * @Route("/medicament/supprimer/{id}", name="supprimerMedoc")
      */
-    public function supprimer($id, Request $request)
+    public function supprimerMedicament($id, Request $request)
     {
     	$repository = $this -> getDoctrine() -> getRepository(Medicament::class);
     	$medicament = $repository -> find($id);
