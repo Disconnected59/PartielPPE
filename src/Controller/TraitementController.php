@@ -32,4 +32,57 @@ class TraitementController extends AbstractController
             'traitements' => $lesTraitement,
         ]);
     }
+    /**
+     * @Route("/traitement/ajouter", name="ajouter")
+     */
+    public function ajouter(Request $request)
+    {
+    	$em = $this -> getDoctrine() -> getManager();
+    	$traitement = new Traitement();
+    	$form = $this -> createForm(AvionsType::class,$traitement);
+    	$form -> handleRequest($request);
+    	if ($form -> isSubmitted() && $form -> isValid()) {
+    		$traitement = $form -> getData();
+    		$em = $this -> getDoctrine() -> getManager();
+    		$em -> persist($traitement);
+    		$em -> flush();
+    		return $this -> redirectToRoute('traitement');
+    	}
+    	return $this->render('traitement/ajouter.html.twig', [
+            'form' => $form -> createView(),
+        ]);;
+    }
+    /**
+     * @Route("/traitement/modifier/{id}", name="modifier")
+     */
+    public function modifier($id, Request $request)
+    {
+    	$repository = $this -> getDoctrine() -> getRepository(Traitement::class);
+    	$traitement = $repository -> find($id);
+    	$form = $this -> createForm(AvionsType::class, $traitement);
+    	$form -> handleRequest($request);
+    	if ($form -> isSubmitted() && $form -> isValid()) {
+    		$traitement = $form -> getData();
+    		$em = $this -> getDoctrine() -> getManager();
+    		$em -> persist($traitement);
+    		$em -> flush();
+    		return $this -> redirectToRoute('traitement');
+    	}
+    	return $this -> render('traitement/modifier.html.twig', [
+    		'form' => $form -> createView(),
+    	]);
+    }
+    /**
+     * @Route("/traitement/supprimer/{id}", name="supprimer")
+     */
+    public function supprimer($id, Request $request)
+    {
+    	$repository = $this -> getDoctrine() -> getRepository(Traitement::class);
+    	$traitement = $repository -> find($id);
+    	$em = $this -> getDoctrine() -> getManager();
+    	$em -> remove($traitement);
+    	$em -> flush();
+    	return $this -> redirectToRoute('traitement');
+    }
+
 }
