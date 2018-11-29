@@ -13,6 +13,8 @@ Les indications :
 <ul>
 {%for unMedoc in medicament %}
 <li> Nom du Medicament : {{unMedoc.libelle}}
+	<a href="{{path('modifierMedoc',{id:unMedoc.id})}}">modifier</a>
+    <a href="{{path('supprimerMedoc',{id:unMedoc.id})}}">supprimer</a></li>
 </li>
 {%else%}
 Pas de médicament trouvé

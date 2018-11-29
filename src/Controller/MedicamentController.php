@@ -23,7 +23,7 @@ class MedicamentController extends AbstractController
     }
 	
 	/**
-	* @Route("/medicament/creer", name="creer")
+	* @Route("/medicament/creer", name="creerMedoc")
 	*/
 	public function creerMedicament(Request $request)
 	{
@@ -43,4 +43,37 @@ class MedicamentController extends AbstractController
 		'form'=>$form->createView(),]);
 	
 	}
+	
+	/**
+     * @Route("/medicament/modifier/{id}", name="modifierMedoc")
+     */
+    public function modifier($id, Request $request)
+    {
+    	$repository = $this -> getDoctrine() -> getRepository(Medicament::class);
+    	$medicament = $repository -> find($id);
+    	$form = $this -> createForm(MedicamentType::class, $medicament);
+    	$form -> handleRequest($request);
+    	if ($form -> isSubmitted() && $form -> isValid()) {
+    		$medicament = $form -> getData();
+    		$em = $this -> getDoctrine() -> getManager();
+    		$em -> persist($medicament);
+    		$em -> flush();
+    		return $this -> redirectToRoute('medicament');
+    	}
+    	return $this -> render('medicament/modifierMedicament.html.twig', [
+    		'form' => $form -> createView(),
+    	]);
+    }
+    /**
+     * @Route("/medicament/supprimer/{id}", name="supprimerMedoc")
+     */
+    public function supprimer($id, Request $request)
+    {
+    	$repository = $this -> getDoctrine() -> getRepository(Medicament::class);
+    	$medicament = $repository -> find($id);
+    	$em = $this -> getDoctrine() -> getManager();
+    	$em -> remove($medicament);
+    	$em -> flush();
+    	return $this -> redirectToRoute('medicament');
+    }
 }
