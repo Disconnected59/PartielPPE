@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\TraitementType;
 use App\Entity\Indication;
 use App\Entity\Traitement;
 use App\Entity\Medicament;
