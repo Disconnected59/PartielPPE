@@ -17,6 +17,8 @@
 			<li>{{traitement.nomPatient}},
 				arriver le {{traitement.dateDebut|date('d-m-Y')}}
 				et est resté pendant {{traitement.duree}} jour(s)
+				<a href="{{path('modifier',{id:traitement.id})}}">modifier</a>
+            	<a href="{{path('supprimer',{id:traitement.id})}}">supprimer</a></li>
 			</li>
 		</ul>
 	{% else %}
