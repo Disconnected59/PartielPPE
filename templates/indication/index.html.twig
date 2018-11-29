@@ -9,13 +9,23 @@
 </style>
 
 <div>
+
+<a href="{{path('creer')}}">Créer une indication</a> <br/>
+
+
+
 Les indications : 
 <ul>
 {%for indication in indications %}
 <li> Medicament : {{indication.getMedicament().getLibelle()}} <br/> Traitement pour le patient : {{indication.getTraitement().getNomPatient()}} <br/> Posologie : {{indication.getPosologie()}}
+<a href="{{path('modifier',{id:indication.id})}}">modifier</a>
+<a href="{{path('retirer',{id:indication.id})}}">supprimer</a>
 </li>
 {%else%}
 Pas d'indication trouvé
+
+
+
 {%endfor%}
 
 </div>

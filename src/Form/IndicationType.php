@@ -16,7 +16,6 @@ class IndicationType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('id')
 			->add('traitement',EntityType::class,array('class'=>Traitement::class,'choice_label'=>'nom_patient'))
 			->add('medicament',EntityType::class,array('class'=>Medicament::class,'choice_label'=>'libelle'))
 			->add('posologie',TextType::class)

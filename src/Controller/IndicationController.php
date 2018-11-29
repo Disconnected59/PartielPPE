@@ -38,7 +38,7 @@ class IndicationController extends AbstractController
 						$em=$this->getDoctrine()->getManager();
 						$em->persist($indication);
 						$em->flush(); 
-			return $this->redirectToRoute('/indication');
+			return $this->redirectToRoute('indication');
 		}
 						return $this->render('indication/formIndication.html.twig',[
 		'form'=>$form->createView(),]);
@@ -55,8 +55,6 @@ class IndicationController extends AbstractController
 		$uneIndication = $repository->find($id);
 		echo "Vous allez modifier l'Indication d'id : ".$id;
 		$form= $this->createForm(IndicationType::class, $uneIndication);
-					   
-			
 		 $form->handleRequest($request);
 		if($form->isSubmitted() && $form->isValid())
 		{	
@@ -66,9 +64,23 @@ class IndicationController extends AbstractController
 			$em->flush(); 
 			return $this->redirectToRoute('indications');			  
 		}
-		return $this->render('adherent/modifierAdherent.html.twig',[
+		return $this->render('indication/modifierIndication.html.twig',[
 			'form'=>$form->createView(),]);
 	}
 	
+	/**
+	*@route("/indication/retirer/{id}", name="retirer")
+	*/
+	public function retirerIndication($id, Request $request)
+	{
+	$repository=$this->getDoctrine()->getRepository(Indication::class);
+	$em=$this->getDoctrine()->getManager();
+	$uneIndication = $repository->find($id);	
+	$em->remove($uneIndication);
+	$em->flush();
+	return $this->redirectToRoute('indication');
+
+	
+	}
 	
 }
