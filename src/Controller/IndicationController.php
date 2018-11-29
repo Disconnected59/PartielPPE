@@ -20,4 +20,27 @@ class IndicationController extends AbstractController
 		return $this->render('indication/index.html.twig',['indications'=>$lesIndications]);
 
     }
+	
+	/**
+	* @Route("/indication/creer", name="creer"
+	*/
+	public function creerIndication(Request $request)
+	{
+		$repository=$this->getDoctrine()->getRepository(Indication::class);
+		$em=$this->getDoctrine()->getManager();
+		$ndication=new Indication();
+		$form= $this->createForm(IndicationType::class, $indication);
+				   $form->handleRequest($request);
+					if($form->isSubmitted() && $form->isValid()) {
+						$indication = $form->getData();
+						$em=$this->getDoctrine()->getManager();
+						$em->persist($indication);
+						$em->flush(); 
+			return $this->redirectToRoute('indications');
+		}
+						return $this->render('indications/formAdherent.html.twig',[
+		'form'=>$form->createView(),]);
+	
+	}
+	
 }

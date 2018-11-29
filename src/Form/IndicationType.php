@@ -21,7 +21,7 @@ class IndicationType extends AbstractType
 			->add('medicamentId',EntityType::class,array('class'=>Medicament::class,'choice_label'=>'libelle'))
 			->add('posologie',TextType::class)
 			->getForm();
-			
+			->add('save',SubmitType::class,array('label'=>'Enregistrer l\'Indication'))
 	
 	}
 	
