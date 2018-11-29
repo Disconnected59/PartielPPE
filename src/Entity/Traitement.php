@@ -31,6 +31,11 @@ class Traitement
      */
     private $nomPatient;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Indication")
+     */
+    private $indication;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Traitement
     public function setNomPatient(string $nomPatient): self
     {
         $this->nomPatient = $nomPatient;
+
+        return $this;
+    }
+
+    public function getIndication(): ?Indication
+    {
+        return $this->indication;
+    }
+
+    public function setIndication(?Indication $indication): self
+    {
+        $this->indication = $indication;
 
         return $this;
     }
