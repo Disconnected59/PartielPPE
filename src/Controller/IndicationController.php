@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Indication;
+use App\Form\IndicationType;
+use Symfony\Component\HttpFoundation\Request;
 
 class IndicationController extends AbstractController
 {
@@ -22,13 +24,13 @@ class IndicationController extends AbstractController
     }
 	
 	/**
-	* @Route("/indication/creer", name="creer"
+	* @Route("/indication/creer", name="creer")
 	*/
 	public function creerIndication(Request $request)
 	{
 		$repository=$this->getDoctrine()->getRepository(Indication::class);
 		$em=$this->getDoctrine()->getManager();
-		$ndication=new Indication();
+		$indication=new Indication();
 		$form= $this->createForm(IndicationType::class, $indication);
 				   $form->handleRequest($request);
 					if($form->isSubmitted() && $form->isValid()) {
@@ -36,11 +38,37 @@ class IndicationController extends AbstractController
 						$em=$this->getDoctrine()->getManager();
 						$em->persist($indication);
 						$em->flush(); 
-			return $this->redirectToRoute('indications');
+			return $this->redirectToRoute('/indication');
 		}
-						return $this->render('indications/formAdherent.html.twig',[
+						return $this->render('indication/formIndication.html.twig',[
 		'form'=>$form->createView(),]);
 	
 	}
+	
+	/**
+	*@route("/indication/modifier/{id}", name="modifier")
+	*/
+	public function modifierIndication($id, Request $request)
+	{
+		$repository=$this->getDoctrine()->getRepository(Indication::class);
+		$em=$this->getDoctrine()->getManager();
+		$uneIndication = $repository->find($id);
+		echo "Vous allez modifier l'Indication d'id : ".$id;
+		$form= $this->createForm(IndicationType::class, $uneIndication);
+					   
+			
+		 $form->handleRequest($request);
+		if($form->isSubmitted() && $form->isValid())
+		{	
+			$uneIndication = $form->getData();
+			$em=$this->getDoctrine()->getManager();
+			$em->persist($uneIndication);
+			$em->flush(); 
+			return $this->redirectToRoute('indications');			  
+		}
+		return $this->render('adherent/modifierAdherent.html.twig',[
+			'form'=>$form->createView(),]);
+	}
+	
 	
 }

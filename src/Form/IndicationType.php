@@ -17,11 +17,12 @@ class IndicationType extends AbstractType
 	{
 		$builder
 			->add('id')
-			->add('traitementId',EntityType::class,array('class'=>Traitement::class,'choice_label'=>'nom_patient'))
-			->add('medicamentId',EntityType::class,array('class'=>Medicament::class,'choice_label'=>'libelle'))
+			->add('traitement',EntityType::class,array('class'=>Traitement::class,'choice_label'=>'nom_patient'))
+			->add('medicament',EntityType::class,array('class'=>Medicament::class,'choice_label'=>'libelle'))
 			->add('posologie',TextType::class)
-			->getForm();
 			->add('save',SubmitType::class,array('label'=>'Enregistrer l\'Indication'))
+			->getForm();
+			
 	
 	}
 	
