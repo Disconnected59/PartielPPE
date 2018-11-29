@@ -10,7 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Indication;
 use App\Entity\Traitement;
+use App\Entity\Medicament;
 
 class TraitementController extends AbstractController
 {
@@ -39,7 +41,7 @@ class TraitementController extends AbstractController
     {
     	$em = $this -> getDoctrine() -> getManager();
     	$traitement = new Traitement();
-    	$form = $this -> createForm(AvionsType::class,$traitement);
+    	$form = $this -> createForm(TraitementType::class,$traitement);
     	$form -> handleRequest($request);
     	if ($form -> isSubmitted() && $form -> isValid()) {
     		$traitement = $form -> getData();
@@ -59,7 +61,7 @@ class TraitementController extends AbstractController
     {
     	$repository = $this -> getDoctrine() -> getRepository(Traitement::class);
     	$traitement = $repository -> find($id);
-    	$form = $this -> createForm(AvionsType::class, $traitement);
+    	$form = $this -> createForm(TraitementType::class, $traitement);
     	$form -> handleRequest($request);
     	if ($form -> isSubmitted() && $form -> isValid()) {
     		$traitement = $form -> getData();
