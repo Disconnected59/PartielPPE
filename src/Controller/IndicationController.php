@@ -62,7 +62,7 @@ class IndicationController extends AbstractController
 			$em=$this->getDoctrine()->getManager();
 			$em->persist($uneIndication);
 			$em->flush(); 
-			return $this->redirectToRoute('indications');			  
+			return $this->redirectToRoute('indication');			  
 		}
 		return $this->render('indication/modifierIndication.html.twig',[
 			'form'=>$form->createView(),]);
