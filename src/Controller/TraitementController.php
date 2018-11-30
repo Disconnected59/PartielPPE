@@ -34,7 +34,7 @@ class TraitementController extends AbstractController
         ]);
     }
     /**
-     * @Route("/traitement/ajouter", name="ajouter")
+     * @Route("/traitement/ajouter", name="ajouterTraitement")
      */
     public function ajouter(Request $request)
     {
@@ -54,7 +54,7 @@ class TraitementController extends AbstractController
         ]);;
     }
     /**
-     * @Route("/traitement/modifier/{id}", name="modifier")
+     * @Route("/traitement/modifier/{id}", name="modifierTraitement")
      */
     public function modifier($id, Request $request)
     {
@@ -74,7 +74,7 @@ class TraitementController extends AbstractController
     	]);
     }
     /**
-     * @Route("/traitement/supprimer/{id}", name="supprimer")
+     * @Route("/traitement/supprimer/{id}", name="supprimerTraitement")
      */
     public function supprimer($id, Request $request)
     {
