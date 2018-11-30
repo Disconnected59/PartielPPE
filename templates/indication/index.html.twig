@@ -17,7 +17,7 @@
 Les indications : 
 <ul>
 {%for indication in indications %}
-<li> Medicament : {{indication.getMedicament().getLibelle()}} <br/>  <br/> Posologie : {{indication.getPosologie()}}
+<li> Medicament : {{indication.getMedicament().getLibelle()}} <br/> Traitement suivi par : {{indication.getTraitement().getNomPatient()}} <br/> Posologie : {{indication.getPosologie()}}
 <a href="{{path('modifier',{id:indication.getId()})}}">modifier</a>
 <a href="{{path('retirer',{id:indication.getId()})}}">supprimer</a>
 </li>
