@@ -85,7 +85,7 @@ class ConnexionAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->router->generate('some_route'));
+        return new RedirectResponse($this->router->generate('indication'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
